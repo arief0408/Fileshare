@@ -1,19 +1,20 @@
 import pandas as pd
 import sys
+import os
 
-def generate_xml_script_header():
+def generate_xml_script_header(file_path):
     xml_content = f'''<HAScript name="create_proposal" description="" timeout="60000" pausetime="300" promptall="true" blockinput="true" author="" creationdate="" supressclearevents="false" usevars="true" ignorepauseforenhancedtn="true" delayifnotenhancedtn="0" ignorepausetimeforenhancedtn="true" continueontimeout="false">
 '''
-    with open(f'generated_xml_script.mac', "w") as file:
+    with open(file_path, "w") as file:
         file.write(xml_content)
 
-def generate_xml_script_footer():
+def generate_xml_script_footer(file_path):
     xml_content = f'''</HAScript>
     '''
-    with open(f'generated_xml_script.mac', "a") as file:
+    with open(file_path, "a") as file:
         file.write(xml_content)
 
-def generate_xml_script(table_value, item_value, long_desc_value, item_value_next,short_desc_value,valid_flag_value,work_unit_value,desc_1_xml,desc_2_xml,exit_screen,entry_screen):
+def generate_xml_script(file_path, table_value, item_value, long_desc_value, item_value_next, short_desc_value, valid_flag_value, work_unit_value, desc_1_xml, desc_2_xml, exit_screen, entry_screen):
     xml_content = f'''<screen name="Table_Code_Maintenance_submenu_{item_value}" entryscreen="{entry_screen}" exitscreen="false" transient="false">
     <description >
         <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
@@ -82,15 +83,15 @@ def generate_xml_script(table_value, item_value, long_desc_value, item_value_nex
     <recolimit value="10000" />
 </screen>
 '''
-    with open(f'generated_xml_script.mac', "a") as file:
+    with open(file_path, "a") as file:
         file.write(xml_content)
 
-def read_excel_and_generate_xml(file_path):
+def read_excel_and_generate_xml(file_path, output_path):
     # Read the Excel file
     df = pd.read_excel(file_path)
     entry_screen = 'false'
     exit_screen = 'false'
-    generate_xml_script_header()
+    generate_xml_script_header(output_path)
     # Iterate over each row
     for index, row in df.iterrows():
         table_value = row['Table']
@@ -101,11 +102,11 @@ def read_excel_and_generate_xml(file_path):
         work_unit_value = row['Work_Unit']
         desc_1_value = row['Product_Desc_Line_1']
         desc_2_value = row['Product_Desc_Line_2']
-        if desc_1_value =='[UNTOUCH]':
+        if desc_1_value == '[UNTOUCH]':
             desc_1_xml = ''
         else:
             desc_1_xml = f'<input value="&apos;{desc_1_value}&apos;" row="11" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" />'
-        if desc_2_value =='[UNTOUCH]':
+        if desc_2_value == '[UNTOUCH]':
             desc_2_xml = ''
         else:
             desc_2_xml = f'<input value="&apos;{desc_2_value}&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" />'
@@ -120,13 +121,24 @@ def read_excel_and_generate_xml(file_path):
         if index == len(df) - 1:
             exit_screen = 'true'
         
-        
-        generate_xml_script(table_value, item_value, long_desc_value, item_value_next,short_desc_value,valid_flag_value,work_unit_value,desc_1_xml,desc_2_xml,exit_screen,entry_screen)
-    generate_xml_script_footer()
+        generate_xml_script(output_path, table_value, item_value, long_desc_value, item_value_next, short_desc_value, valid_flag_value, work_unit_value, desc_1_xml, desc_2_xml, exit_screen, entry_screen)
+    generate_xml_script_footer(output_path)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <excel_file_path>")
+    if len(sys.argv) != 3:
+        print("Usage: python script.py <excel_file_path> <username>")
     else:
         excel_file_path = sys.argv[1]
-        read_excel_and_generate_xml(excel_file_path)
+        username = sys.argv[2]
+
+        # Create the directory if it doesn't exist
+        output_dir = f'C:/Users/{username}/OneDrive - Prudential Corporation Asia/Documents/IBM/iAccessClient/Emulator'
+        os.makedirs(output_dir, exist_ok=True)
+
+        # Define the output file path
+        output_file_path = f'{output_dir}/generated_xml_script.mac'
+
+        # Generate the XML script
+        read_excel_and_generate_xml(excel_file_path, output_file_path)
+
+        print(f"XML script generated and saved to {output_file_path}")
