@@ -4,41 +4,51 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, Alignment
 import ctypes
 import ctypes.wintypes
+import time
 
-def get_text_from_clipboard():
+def get_text_from_clipboard(retries=5, delay=0.5):
     CF_UNICODETEXT = 13  # Constant for Unicode text format
     kernel32 = ctypes.windll.kernel32
     user32 = ctypes.windll.user32
 
-    # Open the clipboard
-    if not user32.OpenClipboard(0):
-        raise RuntimeError("Failed to open clipboard")
+    for attempt in range(retries):
+        try:
+            # Open the clipboard
+            if not user32.OpenClipboard(0):
+                raise RuntimeError("Failed to open clipboard")
 
-    try:
-        # Check if the clipboard contains Unicode text
-        if not user32.IsClipboardFormatAvailable(CF_UNICODETEXT):
-            raise ValueError("No text found in clipboard.")
-        
-        # Get the handle to the clipboard data in CF_UNICODETEXT format
-        handle = user32.GetClipboardData(CF_UNICODETEXT)
-        if not handle:
-            raise RuntimeError("Failed to get clipboard data")
+            try:
+                # Check if the clipboard contains Unicode text
+                if not user32.IsClipboardFormatAvailable(CF_UNICODETEXT):
+                    raise ValueError("No text found in clipboard.")
+                
+                # Get the handle to the clipboard data in CF_UNICODETEXT format
+                handle = user32.GetClipboardData(CF_UNICODETEXT)
+                if not handle:
+                    raise RuntimeError("Failed to get clipboard data")
 
-        # Lock the clipboard data to retrieve the text
-        data_locked = kernel32.GlobalLock(handle)
-        if not data_locked:
-            raise RuntimeError("Failed to lock clipboard data")
+                # Lock the clipboard data to retrieve the text
+                data_locked = kernel32.GlobalLock(handle)
+                if not data_locked:
+                    raise RuntimeError("Failed to lock clipboard data")
 
-        # Extract the text
-        text = ctypes.wstring_at(data_locked)
+                # Extract the text
+                text = ctypes.wstring_at(data_locked)
 
-        # Unlock the clipboard data
-        kernel32.GlobalUnlock(handle)
+                # Unlock the clipboard data
+                kernel32.GlobalUnlock(handle)
 
-        return text
-    finally:
-        # Ensure the clipboard is closed
-        user32.CloseClipboard()
+                return text
+            finally:
+                # Ensure the clipboard is closed
+                user32.CloseClipboard()
+
+        except Exception as e:
+            print(f"Attempt {attempt + 1} failed: {e}")
+            if attempt < retries - 1:
+                time.sleep(delay)  # Wait before retrying
+            else:
+                raise  # If it's the last attempt, raise the error
 
 def write_text_to_excel(excel_file, sheet_name, row, col, text):
     # Check if the Excel file exists
