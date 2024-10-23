@@ -7,13 +7,15 @@ import win32clipboard
 def get_text_from_clipboard():
     try:
         win32clipboard.OpenClipboard()
-        if win32clipboard.IsClipboardFormatAvailable(win32clipboard.CF_TEXT):
-            clipboard_data = win32clipboard.GetClipboardData(win32clipboard.CF_TEXT)
-            return clipboard_data.decode('utf-8')
+        # Use CF_UNICODETEXT to support Unicode text in the clipboard
+        if win32clipboard.IsClipboardFormatAvailable(win32clipboard.CF_UNICODETEXT):
+            clipboard_data = win32clipboard.GetClipboardData(win32clipboard.CF_UNICODETEXT)
+            return clipboard_data
         else:
             raise ValueError("No text found in clipboard.")
     finally:
         win32clipboard.CloseClipboard()
+
 
 def write_text_to_excel(excel_file, sheet_name, row, col, text):
     if os.path.exists(excel_file):
