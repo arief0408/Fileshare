@@ -48,7 +48,7 @@ def get_text_from_clipboard(retries=5, delay=0.5):
             if attempt < retries - 1:
                 time.sleep(delay)  # Wait before retrying
             else:
-                raise  # If it's the last attempt, raise the error
+                raise RuntimeError(f"Error accessing clipboard: {e}")
 
 def write_text_to_excel(excel_file, sheet_name, row, col, text):
     # Check if the Excel file exists
