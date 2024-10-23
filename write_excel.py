@@ -2,53 +2,6 @@ import sys
 import os
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, Alignment
-import ctypes
-import ctypes.wintypes
-import time
-
-def get_text_from_clipboard(retries=5, delay=0.5):
-    CF_UNICODETEXT = 13  # Constant for Unicode text format
-    kernel32 = ctypes.windll.kernel32
-    user32 = ctypes.windll.user32
-
-    for attempt in range(retries):
-        try:
-            # Open the clipboard
-            if not user32.OpenClipboard(0):
-                raise RuntimeError("Failed to open clipboard")
-
-            try:
-                # Check if the clipboard contains Unicode text
-                if not user32.IsClipboardFormatAvailable(CF_UNICODETEXT):
-                    raise ValueError("No text found in clipboard.")
-                
-                # Get the handle to the clipboard data in CF_UNICODETEXT format
-                handle = user32.GetClipboardData(CF_UNICODETEXT)
-                if not handle:
-                    raise RuntimeError("Failed to get clipboard data")
-
-                # Lock the clipboard data to retrieve the text
-                data_locked = kernel32.GlobalLock(handle)
-                if not data_locked:
-                    raise RuntimeError("Failed to lock clipboard data")
-
-                # Extract the text
-                text = ctypes.wstring_at(data_locked)
-
-                # Unlock the clipboard data
-                kernel32.GlobalUnlock(handle)
-
-                return text
-            finally:
-                # Ensure the clipboard is closed
-                user32.CloseClipboard()
-
-        except Exception as e:
-            print(f"Attempt {attempt + 1} failed: {e}")
-            if attempt < retries - 1:
-                time.sleep(delay)  # Wait before retrying
-            else:
-                raise RuntimeError(f"Error accessing clipboard: {e}")
 
 def write_text_to_excel(excel_file, sheet_name, row, col, text):
     # Check if the Excel file exists
@@ -84,27 +37,14 @@ def write_text_to_excel(excel_file, sheet_name, row, col, text):
 if __name__ == "__main__":
     # Check the number of arguments
     if len(sys.argv) < 6:
-        print("Usage: python write_excel.py <sheet_name> <row> <col> <excel_file> [<text> | clipboard]")
+        print("Usage: python write_excel.py <sheet_name> <row> <col> <excel_file> <text>")
         sys.exit(1)
 
     sheet_name = sys.argv[1]  # Sheet name
     row = sys.argv[2]  # Row number
     col = sys.argv[3]  # Column letter
     excel_file = sys.argv[4]  # Excel File
-    if sys.argv[5].lower() == "clipboard":
-        # Get text from clipboard
-        try:
-            clipboard_text = get_text_from_clipboard()
-            write_text_to_excel(excel_file, sheet_name, row, col, clipboard_text)
-            print(f"Clipboard text written into {sheet_name} at {col}{row}, with Courier New font, column width set to 80, and text wrapping enabled.")
-        except ValueError as e:
-            print(e)
-            sys.exit(1)
-        except RuntimeError as e:
-            print(f"Error accessing clipboard: {e}")
-            sys.exit(1)
-    else:
-        # Write the provided text directly
-        text = " ".join(sys.argv[5:])  # Join the rest of the arguments as text
-        write_text_to_excel(excel_file, sheet_name, row, col, text)
-        print(f"Text written into {sheet_name} at {col}{row}, with Courier New font, column width set to 80, and text wrapping enabled.")
+    text = " ".join(sys.argv[5:])  # Join the rest of the arguments as text
+
+    write_text_to_excel(excel_file, sheet_name, row, col, text)
+    print(f"Text written into {sheet_name} at {col}{row}, with Courier New font, column width set to 80, and text wrapping enabled.")
