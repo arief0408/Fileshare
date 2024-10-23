@@ -32,19 +32,29 @@ def write_text_to_excel(excel_file, sheet_name, row, col, text):
     cell.alignment = Alignment(wrap_text=True)
 
     # Save the updated or new Excel file
-    wb.save(excel_file)
+    try:
+        wb.save(excel_file)
+        print(f"Successfully saved the file: {excel_file}")
+    except PermissionError:
+        print(f"Error: Permission denied. Please ensure that '{excel_file}' is closed.")
+        sys.exit(1)
 
 if __name__ == "__main__":
     # Check the number of arguments
     if len(sys.argv) < 6:
-        print("Usage: python write_excel.py <sheet_name> <row> <col> <excel_file> <text>")
+        print("Usage: python write_excel.py <excel_file> <sheet_name> <row> <col> <text...>")
         sys.exit(1)
+    excel_file = sys.argv[1]   # Excel File
+    sheet_name = sys.argv[2]  # Sheet name
+    row = sys.argv[3]          # Row number
+    col = sys.argv[4]          # Column letter
+    
+    
+    # Capture the entire text as a single string, preserving spaces
+    text = " ".join(sys.argv[5:])  # Join arguments without altering spaces
 
-    sheet_name = sys.argv[1]  # Sheet name
-    row = sys.argv[2]  # Row number
-    col = sys.argv[3]  # Column letter
-    excel_file = sys.argv[4]  # Excel File
-    text = " ".join(sys.argv[5:])  # Join the rest of the arguments as text
+    # Optionally replace single spaces with double spaces to ensure original spacing is visible
+    text = text.replace(" ", "  ")
 
     write_text_to_excel(excel_file, sheet_name, row, col, text)
     print(f"Text written into {sheet_name} at {col}{row}, with Courier New font, column width set to 80, and text wrapping enabled.")

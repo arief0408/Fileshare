@@ -1,17 +1,23 @@
 import sys
 import os
-import pyperclip
 from openpyxl import Workbook, load_workbook
-from openpyxl.styles import Font, Alignment
+from openpyxl.drawing.image import Image
+import pyautogui  # For taking the screenshot
+from PIL import Image as PILImage
 
-def get_text_from_clipboard():
-    # Get text from clipboard
-    clipboard_text = pyperclip.paste()
-    if not clipboard_text:
-        raise ValueError("No text found in clipboard.")
-    return clipboard_text
+def take_screenshot():
+    # Take a screenshot
+    screenshot = pyautogui.screenshot()
+    return screenshot
 
-def write_text_to_excel(excel_file, sheet_name, row, col, text):
+def resize_image(image, scale=0.5):
+    # Resize the image to a specified scale
+    width, height = image.size
+    new_size = (int(width * scale), int(height * scale))
+    resized_image = image.resize(new_size)
+    return resized_image
+
+def save_image_to_excel(excel_file, sheet_name, row, col, image):
     # Check if the Excel file exists
     if os.path.exists(excel_file):
         # Load the existing workbook
@@ -26,43 +32,44 @@ def write_text_to_excel(excel_file, sheet_name, row, col, text):
         sheet = wb.active
         sheet.title = sheet_name
 
-    # Write the text into the specified cell
-    cell = sheet[f"{col}{row}"]
-    cell.value = text
+    # Save the image to a temporary file
+    temp_image_path = "screenshot.png"
+    image.save(temp_image_path)
 
-    # Set the column width to 80
-    sheet.column_dimensions[col].width = 80
+    # Insert the image into the specified cell
+    img = Image(temp_image_path)
+    sheet.add_image(img, f"{col}{row}")
 
-    # Set the font to Courier New
-    cell.font = Font(name='Courier New', size=12)
-
-    # Set text to wrap automatically
-    cell.alignment = Alignment(wrap_text=True)
+    # Set the column width and row height to match the image size
+    img_width, img_height = image.size
+    sheet.column_dimensions[col].width = img_width / 7  # Adjust width factor as needed
+    sheet.row_dimensions[int(row)].height = img_height / 0.75  # Adjust height factor as needed
 
     # Save the updated or new Excel file
     wb.save(excel_file)
 
+    # Remove the temporary image file
+    if os.path.exists(temp_image_path):
+        os.remove(temp_image_path)
+
 if __name__ == "__main__":
     # Check the number of arguments
-    if len(sys.argv) < 6:
-        print("Usage: python screenshot.py <sheet_name> <row> <col> <excel_file> [<text> | clipboard]")
+    if len(sys.argv) != 5:
+        print("Usage: python screenshot.py <excel_file> <sheet_name> <row> <col>")
         sys.exit(1)
 
-    sheet_name = sys.argv[1]  # Sheet name
-    row = sys.argv[2]  # Row number
-    col = sys.argv[3]  # Column letter
-    excel_file = sys.argv[4]  # Excel File
-    if sys.argv[5].lower() == "clipboard":
-        # Get text from clipboard
-        try:
-            clipboard_text = get_text_from_clipboard()
-            write_text_to_excel(excel_file, sheet_name, row, col, clipboard_text)
-            print(f"Clipboard text written into {sheet_name} at {col}{row}, with Courier New font, column width set to 80, and text wrapping enabled.")
-        except ValueError as e:
-            print(e)
-            sys.exit(1)
-    else:
-        # Write the provided text directly
-        text = " ".join(sys.argv[5:])  # Join the rest of the arguments as text
-        write_text_to_excel(excel_file, sheet_name, row, col, text)
-        print(f"Text written into {sheet_name} at {col}{row}, with Courier New font, column width set to 80, and text wrapping enabled.")
+    # Get the command line arguments
+    excel_file = sys.argv[1]  # Excel file name
+    sheet_name = sys.argv[2]   # Sheet name
+    row = sys.argv[3]          # Row number (string)
+    col = sys.argv[4]          # Column letter
+
+    # Take a screenshot
+    screenshot = take_screenshot()
+    
+    # Resize the screenshot to half its size
+    resized_screenshot = resize_image(screenshot)
+
+    # Save the resized image to Excel
+    save_image_to_excel(excel_file, sheet_name, row, col, resized_screenshot)
+    print(f"Screenshot inserted into {sheet_name} at {col}{row} with size adjusted.")
