@@ -23,7 +23,7 @@ def write_text_to_excel(excel_file, sheet_name, row, col, text):
     cell.value = text
 
     # Set the column width to 80
-    sheet.column_dimensions[col].width = 80
+    sheet.column_dimensions[col].width = 100
 
     # Set the font to Courier New
     cell.font = Font(name='Courier New', size=12)
