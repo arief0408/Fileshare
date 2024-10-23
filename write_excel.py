@@ -1,11 +1,12 @@
 import sys
-import os
+import os,time
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, Alignment
 import win32clipboard
 
 def get_text_from_clipboard():
     try:
+        time.sleep(3)
         win32clipboard.OpenClipboard()
         # Use CF_UNICODETEXT to support Unicode text in the clipboard
         if win32clipboard.IsClipboardFormatAvailable(win32clipboard.CF_UNICODETEXT):
