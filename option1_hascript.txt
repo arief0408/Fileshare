@@ -1,0 +1,13 @@
+<screen name="Produce_Description_Edit_{item_value}" entryscreen="false" exitscreen="{item_value_next}" transient="false">
+    <description>
+        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+    </description>
+    <actions>
+        <input value="&apos;[{Sum Assured}]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
+        <pause value="200"/>
+    </actions>
+    <nextscreens timeout="0">
+        <nextscreen name="Table_Code_Maintenance_submenu_{item_value_next}"/>
+    </nextscreens>
+    <recolimit value="10000" />
+</screen>
