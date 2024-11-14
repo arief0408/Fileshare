@@ -10,11 +10,14 @@ def generate_xml_script_header(file_path):
 
 def generate_xml_script_footer(file_path):
     xml_content = f'''</HAScript>
+    <vars>
+      <create name="$Check$" type="string" value="&apos;&apos;" />
+      <vars/>
     '''
     with open(file_path, "a") as file:
         file.write(xml_content)
 
-def generate_xml_script(file_path, table_value, item_value, item_value_next, exit_screen, entry_screen,output_string):
+def generate_xml_script(file_path, table_value, item_value, item_value_next, exit_screen, entry_screen,output_string,work_unit_value):
     xml_content = f'''<screen name="Table_Code_Maintenance_submenu_{item_value}" entryscreen="{entry_screen}" exitscreen="false" transient="false">
     <description >
         <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
@@ -32,13 +35,30 @@ def generate_xml_script(file_path, table_value, item_value, item_value_next, exi
     <recolimit value="10000" />
 </screen>
 
+
+
 <screen name="Input_Work_Unit_{item_value}" entryscreen="false" exitscreen="false" transient="false">
     <description >
         <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
     </description>
     <actions>
-        <input value="&apos;1&apos;" row="10" col="23" movecursor="true" xlatehostkeys="true" encrypted="false" />
-        <input value="&apos;[enter]&apos;" row="10" col="23" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;{work_unit_value}&apos;" row="11" col="41" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;[enter]&apos;" row="16" col="60" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <pause value="200"/>
+        <input value="&apos;X&apos;" row="16" col="60" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;[enter]&apos;" row="16" col="60" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <pause value="200"/>
+        <input value="&apos;[enter]&apos;" row="16" col="60" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <pause value="300"/>
+        <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="10" scol="36" erow="10" ecol="45" unwrap="false" continuous="false" assigntovar="$Check$"/>
+        
+        <if condition="($Check$ !=&apos;&apos;)">
+            <input value="&apos;1&apos;" row="10" col="23" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        </if>
+        <if condition="($Check$ ==&apos;&apos;)">
+            <input value="&apos;1&apos;" row="11" col="23" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        </if>
+        <input value="&apos;[enter]&apos;" row="11" col="23" movecursor="true" xlatehostkeys="true" encrypted="false" />
         <pause value="100"/>
     </actions>
     <nextscreens timeout="0" >
@@ -82,6 +102,7 @@ def read_excel_and_generate_xml(file_path, output_path):
     for index, row in df.iterrows():
         table_value = row['Table']
         item_value = row['Item']
+        work_unit_value = row['Work_Unit']
         
         # Dictionary to hold year and flat values dynamically
         values = {
@@ -143,7 +164,7 @@ def read_excel_and_generate_xml(file_path, output_path):
         if index == len(df) - 1:
             exit_screen = 'true'
         
-        generate_xml_script(output_path, table_value, item_value, item_value_next, exit_screen, entry_screen, output_string)
+        generate_xml_script(output_path, table_value, item_value, item_value_next, exit_screen, entry_screen, output_string,work_unit_value)
 
     generate_xml_script_footer(output_path)
 
