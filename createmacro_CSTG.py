@@ -39,17 +39,17 @@ def generate_xml_script(file_path, item_value, item_value_next, entry_screen,pol
         <recolimit value="10000" />
     </screen>
 
-    <screen name="Screen8IF_{item_value}" entryscreen="false" exitscreen="true" transient="false">
+    <screen name="Screen8IF_{item_value}" entryscreen="false" exitscreen="false" transient="false">
         <description >
             <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
         </description>
         <actions>
             <runprogram exe=
-            "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 A SCREENSHOT'"
+            "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 A SCREENSHOT'"
             param="" wait="true"
             assignexitvalue="" />
             <runprogram exe=
-            "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 1 A '+$Temp_Rcpt_Number$"
+            "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 1 A '+$Temp_Rcpt_Number$"
             param="" wait="true"
             assignexitvalue="" />
 
@@ -58,7 +58,7 @@ def generate_xml_script(file_path, item_value, item_value_next, entry_screen,pol
             <input value="&apos;[enter]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <pause value="50" />   
             <runprogram exe=
-            "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 B SCREENSHOT'"
+            "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 B SCREENSHOT'"
             param="" wait="true"
             assignexitvalue="" />
 
@@ -70,7 +70,7 @@ def generate_xml_script(file_path, item_value, item_value_next, entry_screen,pol
             <if condition="($Check_Null$ !=&apos;&apos;)">
                 <pause value="50" />   
                 <runprogram exe=
-                "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 C SCREENSHOT'"
+                "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 C SCREENSHOT'"
                 param="" wait="true"
                 assignexitvalue="" />  
             </if>
@@ -83,7 +83,7 @@ def generate_xml_script(file_path, item_value, item_value_next, entry_screen,pol
             <if condition="($Check_Null$ !=&apos;&apos;)">
                 <pause value="50" />   
                 <runprogram exe=
-                "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 D SCREENSHOT'"
+                "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 D SCREENSHOT'"
                 param="" wait="true"
                 assignexitvalue="" />  
             </if>
@@ -96,42 +96,17 @@ def generate_xml_script(file_path, item_value, item_value_next, entry_screen,pol
             <if condition="($Check_Null$ !=&apos;&apos;)">
                 <pause value="50" />   
                 <runprogram exe=
-                "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 E SCREENSHOT'"
+                "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 E SCREENSHOT'"
                 param="" wait="true"
                 assignexitvalue="" />  
             </if>
 
-            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-            <pause value="50" />     
-            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
-            <pause value="50" />     
 
-            <if condition="($Check_Null$ !=&apos;&apos;)">
-                <pause value="50" />   
-                <runprogram exe=
-                "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 F SCREENSHOT'"
-                param="" wait="true"
-                assignexitvalue="" />  
-            </if>
-
-            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-            <pause value="50" />     
-            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
-            <pause value="50" />     
-
-            <if condition="($Check_Null$ !=&apos;&apos;)">
-                <pause value="50" />   
-                <runprogram exe=
-                "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 G SCREENSHOT'"
-                param="" wait="true"
-                assignexitvalue="" />  
-            </if>
-            <pause value="50" />     
             <input value="&apos;[pf3]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
 
         </actions>
         <nextscreens timeout="0" >
-            <nextscreen name="Screen9IF_{item_value_next}"/>
+            <nextscreen name="Screen7_{item_value_next}"/>
         </nextscreens>
         <recolimit value="10000" />
     </screen>
