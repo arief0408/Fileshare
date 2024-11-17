@@ -1,0 +1,355 @@
+<HAScript name="create_proposal" description="" timeout="60000" pausetime="300" promptall="true" blockinput="true" author="" creationdate="" supressclearevents="false" usevars="true" ignorepauseforenhancedtn="true" delayifnotenhancedtn="0" ignorepausetimeforenhancedtn="true" continueontimeout="false">
+<screen name="Screen7_123123" entryscreen="true" exitscreen="false" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <input value="&apos;123123&apos;" row="18" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />   
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="18" scol="44" erow="18" ecol="51" unwrap="false" continuous="false" assigntovar="$Temp_Rcpt_Number$"/>
+            <pause value="50" />   
+            <input value="&apos;F&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+           
+        </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="Screen8IF_123123"/>
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
+
+    <screen name="Screen8IF_123123" entryscreen="false" exitscreen="true" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <runprogram exe=
+            "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 A SCREENSHOT'"
+            param="" wait="true"
+            assignexitvalue="" />
+            <runprogram exe=
+            "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 1 A '+$Temp_Rcpt_Number$"
+            param="" wait="true"
+            assignexitvalue="" />
+
+ 
+            <input value="&apos;X&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />   
+            <runprogram exe=
+            "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 B SCREENSHOT'"
+            param="" wait="true"
+            assignexitvalue="" />
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 C SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 D SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 E SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 F SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 G SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+            <pause value="50" />     
+            <input value="&apos;[pf3]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+
+        </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="Screen9IF_123123"/>
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
+
+<screen name="Screen7_123123" entryscreen="true" exitscreen="false" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <input value="&apos;123123&apos;" row="18" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />   
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="18" scol="44" erow="18" ecol="51" unwrap="false" continuous="false" assigntovar="$Temp_Rcpt_Number$"/>
+            <pause value="50" />   
+            <input value="&apos;F&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+           
+        </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="Screen8IF_123123"/>
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
+
+    <screen name="Screen8IF_123123" entryscreen="false" exitscreen="true" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <runprogram exe=
+            "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 A SCREENSHOT'"
+            param="" wait="true"
+            assignexitvalue="" />
+            <runprogram exe=
+            "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 1 A '+$Temp_Rcpt_Number$"
+            param="" wait="true"
+            assignexitvalue="" />
+
+ 
+            <input value="&apos;X&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />   
+            <runprogram exe=
+            "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 B SCREENSHOT'"
+            param="" wait="true"
+            assignexitvalue="" />
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 C SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 D SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 E SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 F SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 G SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+            <pause value="50" />     
+            <input value="&apos;[pf3]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+
+        </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="Screen9IF_123123"/>
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
+
+<screen name="Screen7_123123" entryscreen="true" exitscreen="false" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <input value="&apos;123123&apos;" row="18" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />   
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="18" scol="44" erow="18" ecol="51" unwrap="false" continuous="false" assigntovar="$Temp_Rcpt_Number$"/>
+            <pause value="50" />   
+            <input value="&apos;F&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+           
+        </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="Screen8IF_123123"/>
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
+
+    <screen name="Screen8IF_123123" entryscreen="false" exitscreen="true" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <runprogram exe=
+            "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 A SCREENSHOT'"
+            param="" wait="true"
+            assignexitvalue="" />
+            <runprogram exe=
+            "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 1 A '+$Temp_Rcpt_Number$"
+            param="" wait="true"
+            assignexitvalue="" />
+
+ 
+            <input value="&apos;X&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />   
+            <runprogram exe=
+            "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 B SCREENSHOT'"
+            param="" wait="true"
+            assignexitvalue="" />
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 C SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 D SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 E SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 F SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+
+            <input value="&apos;[pagedn]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="50" />     
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="21" scol="67" erow="21" ecol="72" unwrap="false" continuous="false" assigntovar="$Check_Null$"/>
+            <pause value="50" />     
+
+            <if condition="($Check_Null$ !=&apos;&apos;)">
+                <pause value="50" />   
+                <runprogram exe=
+                "'C:\Script\screenshot.exe C:\Script\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 G SCREENSHOT'"
+                param="" wait="true"
+                assignexitvalue="" />  
+            </if>
+            <pause value="50" />     
+            <input value="&apos;[pf3]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+
+        </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="Screen9IF_End"/>
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
+
+</HAScript>
+    <vars>
+      <create name="$Check_Null$" row="" type="string" value="&apos;&apos;" />
+      <create name="$Temp_Rcpt_Number$" row="" type="string" value="&apos;&apos;" />
+    </vars>
+    
