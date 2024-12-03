@@ -4,9 +4,9 @@
         <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
     </description>
     <actions>
-        <input value="&apos;[12e]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <input value="&apos;[1231d]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <input value="&apos;[a2d12d]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
+        <input value="&apos;[60000]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
+        <input value="&apos;[Syariah]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
+        <input value="&apos;[12]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
         <pause value="200"/>
     </actions>
     <nextscreens timeout="0">
@@ -24,28 +24,12 @@
         <pause value="200"/>
     </actions>
     <nextscreens timeout="0">
-        <nextscreen name="Create_Policy_2"/>
+        <nextscreen name="Create_Investment_2"/>
     </nextscreens>
     <recolimit value="10000" />
 </screen>
 
-<screen name="Create_Policy_2" entryscreen="false" exitscreen="{item_value_next}" transient="false">
-    <description>
-        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
-    </description>
-    <actions>
-        <input value="&apos;[12e]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <input value="&apos;[1231d]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <input value="&apos;[a2d12d]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <pause value="200"/>
-    </actions>
-    <nextscreens timeout="0">
-        <nextscreen name="Test2"/>
-    </nextscreens>
-    <recolimit value="10000" />
-</screen>
-
-<screen name="Test2" entryscreen="false" exitscreen="{item_value_next}" transient="false">
+<screen name="Create_Investment_2" entryscreen="false" exitscreen="{item_value_next}" transient="false">
     <description>
         <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
     </description>
@@ -54,12 +38,28 @@
         <pause value="200"/>
     </actions>
     <nextscreens timeout="0">
-        <nextscreen name="Create_Investment_3"/>
+        <nextscreen name="Create_Policy_3"/>
     </nextscreens>
     <recolimit value="10000" />
 </screen>
 
-<screen name="Create_Investment_3" entryscreen="false" exitscreen="{item_value_next}" transient="false">
+<screen name="Create_Policy_3" entryscreen="false" exitscreen="{item_value_next}" transient="false">
+    <description>
+        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+    </description>
+    <actions>
+        <input value="&apos;[60000]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
+        <input value="&apos;[Syariah]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
+        <input value="&apos;[12]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
+        <pause value="200"/>
+    </actions>
+    <nextscreens timeout="0">
+        <nextscreen name="Test3"/>
+    </nextscreens>
+    <recolimit value="10000" />
+</screen>
+
+<screen name="Test3" entryscreen="false" exitscreen="{item_value_next}" transient="false">
     <description>
         <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
     </description>
