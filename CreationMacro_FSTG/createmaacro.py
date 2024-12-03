@@ -101,7 +101,7 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
         <actions>
             <input value="&apos;[enter]&apos;" row="8" col="10" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <pause value="100" />
-            <input value="&apos;[enter]&apos;" row="4" col="13" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="5" col="13" movecursor="true" xlatehostkeys="true" encrypted="false" />
         </actions>
         <nextscreens timeout="0" >
             <nextscreen name="Screen3"/>
@@ -642,6 +642,7 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
             <!-- <input value="$Pol_Price$" row="12" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" /> -->
             <pause value="300" />
             <input value="&apos;[pf5]&apos;" row="12" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;Y&apos;" row="16" col="77" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <input value="&apos;[enter]&apos;" row="12" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
         </actions>
         <nextscreens timeout="0" >
