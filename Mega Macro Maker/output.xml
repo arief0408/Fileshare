@@ -1,90 +1,149 @@
 <HAScript name="create_proposal" description="" timeout="60000" pausetime="300" promptall="true" blockinput="true" author="" creationdate="" supressclearevents="false" usevars="true" ignorepauseforenhancedtn="true" delayifnotenhancedtn="0" ignorepausetimeforenhancedtn="true" continueontimeout="false">
-<screen name="Create_Policy_1" entryscreen="false" exitscreen="{item_value_next}" transient="false">
-    <description>
-        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
-    </description>
-    <actions>
-        <input value="&apos;[60000]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <input value="&apos;[Syariah]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <input value="&apos;[12]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <pause value="200"/>
-    </actions>
-    <nextscreens timeout="0">
-        <nextscreen name="Test1"/>
-    </nextscreens>
-    <recolimit value="10000" />
-</screen>
+<vars>
+      <create name="$Surname$" type="string" value="$Test$" />
+      <create name="$Salutation$" type="string" value="&apos;BAPAK&apos;" />
+      <create name="$Gender$" type="string" value="&apos;F&apos;" />
+      <create name="$Married$" type="string" value="&apos;S&apos;" />
+      <create name="$Street_Name$" type="string" value="&apos;Jalan Taman Pinus&apos;" />
+      <create name="$State$" type="string" value="&apos;DKI Jakarta&apos;" />
+      <create name="$Postal_Code$" type="string" value="&apos;13950&apos;" />
+      <create name="$Phonenum$" type="string" value="&apos;6289672300432&apos;" />
+      <create name="$ID_Num$" type="string" value="&apos;55464827&apos;" />
+      <create name="$DOB$" type="string" value="&apos;01/01/1998&apos;" />
+      <create name="$Contract_Owner$" type="string" value="&apos;55464827&apos;" />
+      <create name="$Rand_Num$" row="" type="string" value="&apos;&apos;" />
+      <create name="$Email$" row="" type="string" value="&apos;ariefchaerudin@gmail.com&apos;" />
 
-<screen name="Test1" entryscreen="false" exitscreen="{item_value_next}" transient="false">
-    <description>
-        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
-    </description>
-    <actions>
-        <input value="&apos;[{Sum Assured}]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <pause value="200"/>
-    </actions>
-    <nextscreens timeout="0">
-        <nextscreen name="Create_Investment_2"/>
-    </nextscreens>
-    <recolimit value="10000" />
-</screen>
 
-<screen name="Create_Investment_2" entryscreen="false" exitscreen="{item_value_next}" transient="false">
-    <description>
-        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
-    </description>
-    <actions>
-        <input value="&apos;[{Sum Assured}]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <pause value="200"/>
-    </actions>
-    <nextscreens timeout="0">
-        <nextscreen name="Create_Policy_3"/>
-    </nextscreens>
-    <recolimit value="10000" />
-</screen>
+    </vars>
+<screen name="Create_Client_1" entryscreen="false" exitscreen="false" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <input value="&apos;[enter]&apos;" row="9" col="10" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="100" />
+            <input value="&apos;[enter]&apos;" row="5" col="13" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="Screen3_1"/>
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
 
-<screen name="Create_Policy_3" entryscreen="false" exitscreen="{item_value_next}" transient="false">
-    <description>
-        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
-    </description>
-    <actions>
-        <input value="&apos;[60000]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <input value="&apos;[Syariah]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <input value="&apos;[12]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <pause value="200"/>
-    </actions>
-    <nextscreens timeout="0">
-        <nextscreen name="Test3"/>
-    </nextscreens>
-    <recolimit value="10000" />
-</screen>
+    <screen name="Screen3_1" entryscreen="false" exitscreen="false" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <input value="&apos;A&apos;" row="21" col="37" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="Screen4_1"/>
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
+    
+    <screen name="Screen4_1" entryscreen="false" exitscreen="false" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <input value="$Surname$" row="5" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$Salutation$" row="7" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$Gender$" row="7" col="57" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$Married$" row="7" col="74" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$Street_Name$" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$State$" row="11" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$Postal_Code$" row="12" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;RI&apos;" row="13" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;RI&apos;" row="14" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$Phonenum$" row="14" col="21" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;R&apos;" row="13" col="35" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="4" scol="17" erow="4" ecol="24" unwrap="false" continuous="false" assigntovar="$ID_Num$"/>
+            <input value="$ID_Num$" row="13" col="52" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;ADMO&apos;" row="16" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$DOB$" row="17" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$State$" row="17" col="43" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;DIJKT&apos;" row="12" col="28" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;RI&apos;" row="15" col="53" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[pf5]&apos;" row="15" col="53" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="300"/>
+            <input value="&apos;X&apos;" row="19" col="36" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;X&apos;" row="19" col="52" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;X&apos;" row="19" col="63" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;X&apos;" row="19" col="77" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;X&apos;" row="20" col="52" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;X&apos;" row="20" col="63" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            
+            <input value="&apos;[enter]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="1000"/>
+            <input value="$Phonenum$" row="10" col="28" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$Email$" row="14" col="28" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;RI&apos;" row="10" col="47" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;RI&apos;" row="16" col="68" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;N&apos;" row="16" col="28" movecursor="true" xlatehostkeys="true" encrypted="false" />
 
-<screen name="Test3" entryscreen="false" exitscreen="{item_value_next}" transient="false">
-    <description>
-        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
-    </description>
-    <actions>
-        <input value="&apos;[{Sum Assured}]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <pause value="200"/>
-    </actions>
-    <nextscreens timeout="0">
-        <nextscreen name="Create_Investment_4"/>
-    </nextscreens>
-    <recolimit value="10000" />
-</screen>
+            <input value="&apos;[enter]&apos;" row="16" col="28" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="800"/>
+            <input value="&apos;H&apos;" row="5" col="42" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;G&apos;" row="6" col="42" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[pf5]&apos;" row="6" col="42" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="800"/>
+            <input value="&apos;G&apos;" row="12" col="7" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;F&apos;" row="12" col="20" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="300"/>
+            <input value="&apos;50000000&apos;" row="12" col="22" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;50000000&apos;" row="12" col="57" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;G&apos;" row="12" col="42" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;F&apos;" row="12" col="55" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[pf5]&apos;" row="6" col="42" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="800"/>
+            <input value="&apos;[enter]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="800"/>
+            <input value="&apos;A&apos;" row="4" col="43" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;A&apos;" row="5" col="43" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;E&apos;" row="6" col="43" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[pf5]&apos;" row="6" col="43" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="400"/>
 
-<screen name="Create_Investment_4" entryscreen="false" exitscreen="{item_value_next}" transient="false">
-    <description>
-        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
-    </description>
-    <actions>
-        <input value="&apos;[{Sum Assured}]&apos;" row="13" col="08" movecursor="true" xlatehostkeys="true" encrypted="false" /> 
-        <pause value="200"/>
-    </actions>
-    <nextscreens timeout="0">
-        <nextscreen name="Table_Code_Maintenance_submenu_next_value"/>
-    </nextscreens>
-    <recolimit value="10000" />
-</screen>
+            <input value="&apos;[enter]&apos;" row="6" col="43" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="900"/>
+            <input value="&apos;NOTAX&apos;" row="8" col="4" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="550"/>
+            <input value="&apos;R&apos;" row="8" col="54" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="250"/>
+            <input value="&apos;[pf5]&apos;" row="8" col="54" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="300"/>
+            <input value="&apos;[enter]&apos;" row="8" col="54" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="500"/>
+            <input value="&apos;N&apos;" row="9" col="48" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="9" col="48" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="500"/>
+            <input value="&apos;[enter]&apos;" row="9" col="48" movecursor="true" xlatehostkeys="true" encrypted="false" />
+           
+            </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="Screen5A_1"/>
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
 
+    <screen name="Screen5A_1" entryscreen="false" exitscreen="false" transient="false">
+        <description >
+            <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+        </description>
+        <actions>
+            <pause value="100" />
+            <input value="&apos;[pf3]&apos;" row="11" col="11" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="100" />
+            <input value="&apos;[pf3]&apos;" row="11" col="11" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="100" />
+        </actions>
+        <nextscreens timeout="0" >
+            <nextscreen name="" />
+        </nextscreens>
+        <recolimit value="10000" />
+    </screen>
 </HAScript>
