@@ -69,8 +69,9 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
             <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
         </description>
         <actions>
-            <input value="&apos;{Policy}&apos;" row="18" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="$Temp_Rcpt_Number$" row="18" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <input value="&apos;F&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
 
 
         </actions>
@@ -423,7 +424,7 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
         </nextscreens>
         <recolimit value="10000" />
     </screen>
-    <screen name="Screen31IF" entryscreen="false" exitscreen="true" transient="false">
+    <screen name="Screen31IF" entryscreen="false" exitscreen="false" transient="false">
         <description >
             <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
         </description>
@@ -462,7 +463,7 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
            
         </actions>
         <nextscreens timeout="0" >
-            <!-- <nextscreen name="Screen32IF"/> -->
+            <nextscreen name="Screen10IF"/>
         </nextscreens>
         <recolimit value="10000" />
     </screen>
@@ -479,7 +480,6 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
 
         </actions>
         <nextscreens timeout="0" >
-            <nextscreen name="Screen10IFF"/>
         </nextscreens>
         <recolimit value="10000" />
     </screen>
