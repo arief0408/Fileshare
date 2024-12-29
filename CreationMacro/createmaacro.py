@@ -519,150 +519,64 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
             <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
         </description>
         <actions>
-            <if condition="($Term$ ==&apos;15&apos;) &amp;&amp; ($Product$ ==&apos;L2J&apos;)">
-                    <input value="&apos;875000000&apos;" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;15&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-                    <input value="&apos;[enter]&apos;" row="09" col="09" movecursor="true" xlatehostkeys="true" encrypted="false" />
-            </if>
-            <if condition="($Term$ ==&apos;10&apos;) &amp;&amp; ($Product$ ==&apos;L2J&apos;)">
-                    <input value="&apos;875000000&apos;" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;10&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-                    <input value="&apos;[enter]&apos;" row="09" col="09" movecursor="true" xlatehostkeys="true" encrypted="false" />
-            </if>
-            <if condition="($Term$ ==&apos;05&apos;) &amp;&amp; ($Product$ ==&apos;L2J&apos;)">
-                    <input value="&apos;875000000&apos;" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;05&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-                    <input value="&apos;[enter]&apos;" row="09" col="09" movecursor="true" xlatehostkeys="true" encrypted="false" />
-            </if>
 
-            <if condition="($Product$ ==&apos;T2U&apos;)">
-                    <input value="&apos;500000000&apos;" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;10&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-            </if> 
-
-            <if condition="($Product$ ==&apos;E2R1&apos; &amp;&amp; $Premill$ == &apos;&apos;)">
+            <if condition="($Product$ ==&apos;E2R1&apos;)">
                     <input value="$Sum_Assured$" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="$Premium$" row="17" col="58" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <!-- <input value="&apos;10&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" /> -->
                     <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <pause value="200" />
+            </if> 
+
+            
+
+            <if condition="($Product$ ==&apos;E2R3&apos;)">
+                    <input value="$Sum_Assured$" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="$Premium$" row="17" col="58" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="$Term$" row="9" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="$Prem_Term$" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <pause value="200" />
+            </if> 
+
+            <if condition="($Product$ ==&apos;E2R5&apos;)">
+                    <input value="$Sum_Assured$" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="$Premium$" row="17" col="58" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="$Term$" row="9" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="$Prem_Term$" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <pause value="200" />
             </if> 
 
-            <if condition="($Product$ ==&apos;E2R1&apos; &amp;&amp; $Premill$ != &apos;&apos;)">
-                    <input value="$Sum_Assured$" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Premium$" row="17" col="58" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    
+            <if condition="($Premill$ != &apos;&apos; || $Death$ != &apos;&apos;) || $CI$ != &apos;&apos;)">
                     <input value="&apos;x&apos;" row="17" col="32" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="&apos;[enter]&apos;" row="17" col="32" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="100" />
+                    <pause value="400" />
+                    <input value="$Death$" row="11" col="25" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="$Premill$" row="11" col="34" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="$Premill$" row="11" col="59" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="&apos;oc&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="&apos;[pf5]&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                        <runprogram exe=
+                        "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 A SCREENSHOT'"
+                        param="" wait="true"
+                        assignexitvalue="" />
                     <pause value="200" />
+                    <input value="&apos;[enter]&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <pause value="400" />
                     <boxselection type="SELECT" srow="17" scol="58" erow="17" ecol="79" />
                     <pause value="500" />
                     <input value="&apos;[cut]&apos;" row="0" col="0" movecursor="true" xlatehostkeys="true" encrypted="false" />
-        
-                    <!-- <input value="&apos;10&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" /> -->
                     <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
+                        <runprogram exe=
+                        "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 B SCREENSHOT'"
+                        param="" wait="true"
+                        assignexitvalue="" />
+                    <pause value="400" />
             </if> 
+            <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
 
-            <if condition="($Product$ ==&apos;E2R3&apos; &amp;&amp; $Premill$ == &apos;&apos;)">
-                    <input value="$Sum_Assured$" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Premium$" row="17" col="58" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Term$" row="9" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Prem_Term$" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-            </if> 
-            <if condition="($Product$ ==&apos;E2R3&apos; &amp;&amp; $Premill$ != &apos;&apos;)">
-                    <input value="$Sum_Assured$" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Premium$" row="17" col="58" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Term$" row="9" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Prem_Term$" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="100" />
-                    <input value="&apos;x&apos;" row="17" col="32" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="17" col="32" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="100" />
-                    <input value="$Premill$" row="11" col="59" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;oc&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[pf5]&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-                    <boxselection type="SELECT" srow="17" scol="58" erow="17" ecol="79" />
-                    <pause value="500" />
-                    <input value="&apos;[cut]&apos;" row="0" col="0" movecursor="true" xlatehostkeys="true" encrypted="false" />
-        
-                    <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-            </if> 
-            <if condition="($Product$ ==&apos;E2R5&apos; &amp;&amp; $Premill$ == &apos;&apos;)">
-                    <input value="$Sum_Assured$" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Premium$" row="17" col="58" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Term$" row="9" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Prem_Term$" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-            </if> 
-            <if condition="($Product$ ==&apos;E2R5&apos; &amp;&amp; $Premill$ != &apos;&apos;)">
-                    <input value="$Sum_Assured$" row="8" col="17" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Premium$" row="17" col="58" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Term$" row="9" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Prem_Term$" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="100" />
-                    <input value="&apos;x&apos;" row="17" col="32" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="17" col="32" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="100" />
-                    <input value="$Premill$" row="11" col="59" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;oc&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[pf5]&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-                    <boxselection type="SELECT" srow="17" scol="58" erow="17" ecol="79" />
-                    <pause value="500" />
-                    <input value="&apos;[cut]&apos;" row="0" col="0" movecursor="true" xlatehostkeys="true" encrypted="false" />
-        
-                    <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="200" />
-            </if> 
-
-            <if condition="($Product$ ==&apos;U1B&apos;)">
-                    <input value="&apos;60000000&apos;" row="8" col="22" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;60000000&apos;" row="15" col="62" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="800" />
-                    <input value="&apos;PRMF&apos;" row="12" col="25" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;100&apos;" row="12" col="33" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[pf5]&apos;" row="10" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <pause value="800" />                                        
-                    <input value="&apos;2&apos;" row="11" col="33" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="11" col="33" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[pagedn]&apos;" row="11" col="33" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[pagedn]&apos;" row="11" col="33" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;X&apos;" row="9" col="9" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;[enter]&apos;" row="9" col="9" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;60000000&apos;" row="15" col="62" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;PRMF&apos;" row="12" col="25" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="&apos;100&apos;" row="12" col="33" movecursor="true" xlatehostkeys="true" encrypted="false" />
-
-                </if>
 
         </actions>
         <nextscreens timeout="0" >
@@ -884,47 +798,40 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
 
             <pause value="500" />
             <runprogram exe=
-            "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 A SCREENSHOT'"
+            "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 C SCREENSHOT'"
             param="" wait="true"
             assignexitvalue="" />
             <runprogram exe=
-            "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 1 A '+$Temp_Rcpt_Number$"
+            "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 1 A '+$Temp_Rcpt_Number$"
             param="" wait="true"
             assignexitvalue="" />
- 
-            <pause value="2000" />
+             <pause value="500" />
+
             <input value="&apos;X&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="15" scol="19" erow="15" ecol="20" unwrap="false" continuous="false" assigntovar="$Bill_Day$"/>
             <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="15" scol="22" erow="15" ecol="23" unwrap="false" continuous="false" assigntovar="$Bill_Month$"/>
             <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="15" scol="25" erow="15" ecol="28" unwrap="false" continuous="false" assigntovar="$Bill_Year$"/>
             <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="15" scol="35" erow="15" ecol="44" unwrap="false" continuous="false" assigntovar="$Pol_Price$"/>
-            <input value="&apos;X&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;X&apos;" row="20" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <input value="&apos;[enter]&apos;" row="21" col="39" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <pause value="800" />
-            <input value="&apos;X&apos;" row="9" col="3" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;1&apos;" row="11" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <input value="&apos;[enter]&apos;" row="9" col="3" movecursor="true" xlatehostkeys="true" encrypted="false" />
-            <extract name="&apos;Extract&apos;" planetype="TEXT_PLANE" srow="14" scol="35" erow="14" ecol="41" unwrap="false" continuous="false" assigntovar="$Commission$"/>
+            <pause value="300" />
             <runprogram exe=
-            "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 B SCREENSHOT'"
+            "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 D SCREENSHOT'"
             param="" wait="true"
             assignexitvalue="" />
+            <pause value="300" />
+            <input value="&apos;X&apos;" row="20" col="5" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;[enter]&apos;" row="20" col="5" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <pause value="300" />
             <runprogram exe=
-            "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 1 B YEAR 1 '+$Commission$"
+            "'C:\\\\Script\\\\screenshot.exe C:\\\\Script\\\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 D SCREENSHOT'"
             param="" wait="true"
             assignexitvalue="" />
-            <if condition="($Product$ !=&apos;T2U&apos;)">
-            <input value="&apos;[pagedn]&apos;" row="9" col="3" movecursor="true" xlatehostkeys="true" encrypted="false" />
-            <runprogram exe=
-            "'C:\\Script\\screenshot.exe C:\\Script\\test_scen.xlsx '+$Temp_Rcpt_Number$+' 2 C SCREENSHOT'"
-            param="" wait="true"
-            assignexitvalue="" />
-            </if>
-            <input value="&apos;[enter]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <pause value="100" />
             <input value="&apos;[pf3]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
-            <!-- <pause value="100" />
-            <input value="&apos;[pf3]&apos;" row="21" col="44" movecursor="true" xlatehostkeys="true" encrypted="false" />
-            -->
         </actions>
         <nextscreens timeout="0" >
             <nextscreen name="Screen9IF"/>
@@ -979,7 +886,9 @@ for index, row in df.iterrows():
         Gender=row.get('Gender', ''),
         Premium=row.get('Premium', ''),
         Smoking=row.get('Smoking', ''),
-        Premill=row.get('Premill', ''),
+        Premill=row.get('Permill', ''),
+        Death=row.get('Death', ''),
+        CI=row.get('CI', ''),
         TC_Next=row.get('TC_Next', ''),
         DOB=row.get('DOB', '')
         
