@@ -70,6 +70,8 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
         <create name="$Premium$" row="" type="string" value="&apos;{Premium}&apos;" />  
         <create name="$Smoking$" row="" type="string" value="&apos;{Smoking}&apos;" />
         <create name="$Premill$" row="" type="string" value="&apos;{Premill}&apos;" />
+        <create name="$Death$" row="" type="string" value="&apos;{Death}&apos;" />
+        <create name="$CI$" row="" type="string" value="&apos;{CI}&apos;" />
         <create name="$DOB$" type="string" value="&apos;{DOB}&apos;" />
   
 
@@ -549,12 +551,12 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
                     <pause value="200" />
             </if> 
 
-            <if condition="($Premill$ != &apos;&apos; || $Death$ != &apos;&apos;) || $CI$ != &apos;&apos;)">
+            <if condition="($Premill$ != &apos;&apos; || $Death$ != &apos;&apos; || $CI$ != &apos;&apos;)">
                     <input value="&apos;x&apos;" row="17" col="32" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="&apos;[enter]&apos;" row="17" col="32" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <pause value="400" />
                     <input value="$Death$" row="11" col="25" movecursor="true" xlatehostkeys="true" encrypted="false" />
-                    <input value="$Premill$" row="11" col="34" movecursor="true" xlatehostkeys="true" encrypted="false" />
+                    <input value="$CI$" row="11" col="34" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="$Premill$" row="11" col="59" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="&apos;oc&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
                     <input value="&apos;[pf5]&apos;" row="15" col="2" movecursor="true" xlatehostkeys="true" encrypted="false" />
@@ -823,7 +825,7 @@ mac_template = """<HAScript name="create_proposal" description="" timeout="60000
             param="" wait="true"
             assignexitvalue="" />
             <pause value="300" />
-            <input value="&apos;X&apos;" row="20" col="5" movecursor="true" xlatehostkeys="true" encrypted="false" />
+            <input value="&apos;X&apos;" row="20" col="50" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <input value="&apos;[enter]&apos;" row="20" col="5" movecursor="true" xlatehostkeys="true" encrypted="false" />
             <pause value="300" />
             <runprogram exe=
