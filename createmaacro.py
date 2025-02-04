@@ -3,11 +3,11 @@ import pandas as pd
 import numpy as np
 
 # Load the Excel file into a DataFrame
-input_file = 'data_l2k.xlsx'  # Replace with your Excel file name
+input_file = 'data_l1j.xlsx'  # Replace with your Excel file name
 df = pd.read_excel(input_file)
 
 # Read the .txt file containing the template
-with open('mac_template_l2k.txt', 'r', encoding='utf-8') as template_file:
+with open('mac_template_l1j.txt', 'r', encoding='utf-8') as template_file:
     mac_template = template_file.read()
 
 # Replace NaN values in the DataFrame with empty strings
@@ -55,7 +55,7 @@ for index, row in df.iterrows():
     )
 
     # Create the file path for the .mac file
-    mac_filename = f'l2k_{index + 1}.mac'  # The file name (e.g., bospo_1.mac)
+    mac_filename = f'l1j_{index + 1}.mac'  # The file name (e.g., bospo_1.mac)
     mac_file_path = os.path.join(ibm_path, mac_filename)  # Combine IBM_PATH with the filename
 
     # Save the formatted content to the .mac file in the specified IBM_PATH
