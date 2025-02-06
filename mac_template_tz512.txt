@@ -1,0 +1,69 @@
+<HAScript name="create_proposal" description="" timeout="60000" pausetime="300" promptall="true" blockinput="true" author="" creationdate="" supressclearevents="false" usevars="true" ignorepauseforenhancedtn="true" delayifnotenhancedtn="0" ignorepausetimeforenhancedtn="true" continueontimeout="false">
+
+  <screen name="Table_Code_Maintenance_submenu" entryscreen="{entry_screen}" exitscreen="false" transient="false">
+    <description >
+        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+    </description>
+    <actions>
+        <input value="&apos;{table_value}&apos;" row="17" col="35" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;{Code}&apos;" row="18" col="35" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;D&apos;" row="22" col="35" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;[enter]&apos;" row="22" col="35" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <pause value="200"/>
+    </actions>
+    <nextscreens timeout="0" >
+        <nextscreen name="Input_Work_Unit" />
+    </nextscreens>
+    <recolimit value="10000" />
+</screen>
+
+<screen name="Input_Work_Unit" entryscreen="false" exitscreen="false" transient="false">
+    <description >
+        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+    </description>
+    <actions>
+        <input value="&apos;{work_unit_value}&apos;" row="11" col="41" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;[enter]&apos;" row="16" col="60" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <pause value="100"/>
+        <input value="&apos;X&apos;" row="16" col="60" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;[enter]&apos;" row="16" col="60" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <pause value="200"/>
+    </actions>
+    <nextscreens timeout="0" >
+        <nextscreen name="Table_Item_Maintenance" />
+    </nextscreens>
+    <recolimit value="10000" />
+</screen>
+
+<screen name="Table_Item_Maintenance" entryscreen="false" exitscreen="false" transient="false">
+    <description >
+        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+    </description>
+    <actions>
+        <input value="&apos;{Branch_Name}&apos;" row="12" col="31" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;{Code}&apos;" row="14" col="31" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <input value="&apos;[enter]&apos;" row="16" col="31" movecursor="true" xlatehostkeys="true" encrypted="false" />
+        <pause value="100"/>
+    </actions>
+    <nextscreens timeout="0" >
+    <nextscreen name="Produce_Description_Edit" />
+    </nextscreens>
+    <recolimit value="10000" />
+</screen>
+
+<screen name="Produce_Description_Edit" entryscreen="false" exitscreen="true" transient="false">
+    <description >
+        <oia status="NOTINHIBITED" optional="false" invertmatch="false" />
+    </description>
+    <actions>
+    <playmacro name="tz512_{TC_Next}.mac" startscreen="*DEFAULT*" transfervars="Transfer" />
+    </actions>
+    <nextscreens timeout="0" >
+    </nextscreens>
+    <recolimit value="10000" />
+</screen>
+    
+
+   
+    
+</HAScript>
