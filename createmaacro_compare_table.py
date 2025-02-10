@@ -28,11 +28,12 @@ for index, row in df.iterrows():
     # Format the content by replacing placeholders with values from the DataFrame
     formatted_content = mac_template.format(
         Item=row.get('Item', ''),
-        table_value=row.get('table_value',''),
+        table_value=row.get('Table_Value',''),
         Test_State=row.get('Test_State', ''),
         IBM_Path=ibm_path,  # Set IBM_Path to the full path of the .mac file
         TC_Next=index + 2,
-        cell=index + 2
+        cell=index + 2,
+        cell_image=index + 24
     )
 
     # Create the file path for the .mac file
