@@ -1,0 +1,46 @@
+import os
+import pandas as pd
+import numpy as np
+
+# Load the Excel file into a DataFrame
+input_file = 'data_compare_table.xlsx'  # Replace with your Excel file name
+df = pd.read_excel(input_file)
+
+# Read the .txt file containing the template
+with open('mac_template_compare_table.txt', 'r', encoding='utf-8') as template_file:
+    mac_template = template_file.read()
+
+# Replace NaN values in the DataFrame with empty strings
+df = pd.read_excel(input_file).replace(np.nan, '', regex=True)
+
+# Generate .mac files for each row in the DataFrame
+for index, row in df.iterrows():
+    # Generate the full path for the .mac file
+
+    # Get the IBM_PATH from the row
+    ibm_path = row.get('IBM_Path', '')  # Example: 'C:\\Fileshare_GIT_Pru\\CreationMacro'
+
+    # Ensure the IBM_PATH exists and is valid
+    if not os.path.exists(ibm_path):
+        print(f"Error: IBM_PATH '{ibm_path}' does not exist.")
+        continue  # Skip this iteration if the path is invalid
+
+    # Format the content by replacing placeholders with values from the DataFrame
+    formatted_content = mac_template.format(
+        Item=row.get('Item', ''),
+        table_value=row.get('table_value',''),
+        Test_State=row.get('Test_State', ''),
+        IBM_Path=ibm_path,  # Set IBM_Path to the full path of the .mac file
+        TC_Next=index + 2,
+        cell=index + 2
+    )
+
+    # Create the file path for the .mac file
+    mac_filename = f'compare_table_{index + 1}.mac'  # The file name (e.g., bospo_1.mac)
+    mac_file_path = os.path.join(ibm_path, mac_filename)  # Combine IBM_PATH with the filename
+
+    # Save the formatted content to the .mac file in the specified IBM_PATH
+    with open(mac_file_path, 'w', encoding='utf-8') as file:
+        file.write(formatted_content)
+
+print("MAC files generated successfully!")

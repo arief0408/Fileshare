@@ -48,4 +48,4 @@ for index, row in df.iterrows():
     with open(mac_file_path, 'w', encoding='utf-8') as file:
         file.write(formatted_content)
 
-print("MAC files generated successfully!")
+print("MAC files generated successfully! Please Contact Arief Chaerudin if there's any issue or question.")
