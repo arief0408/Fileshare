@@ -25,9 +25,7 @@ for index, row in df.iterrows():
         print(f"Error: IBM_PATH '{ibm_path}' does not exist.")
         continue  
 
-    # Handle last record differently
-    if index == len(df) - 1:
-        macro_chain='1'
+    macro_chain_value = 1 if index == len(df) - 1 else 0  
 
 
     # Format the content by replacing placeholders with values from the DataFrame
@@ -39,7 +37,7 @@ for index, row in df.iterrows():
         Year=row.get('Year', ''),
         IBM_Path=ibm_path,
         TC_Next=index + 2,
-        macro_chain='0',
+        macro_chain=macro_chain_value,
         cell=index + 2
     )
 
