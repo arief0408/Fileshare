@@ -18,6 +18,7 @@ for index, row in df.iterrows():
     # Generate the full path for the .mac file
     formatted_agent = str(row.get('Agent', '')).zfill(8)  # Ensure it's 8 digits
     formatted_partner = str(row.get('Partner', '')).zfill(8)  # Ensure it's 8 digits
+    formatted_Reff_Partner = str(row.get('Reff_Partner', '')).zfill(8)  # Ensure it's 8 digits
     formatted_mandate = str(row.get('Mandate', '')).zfill(5)  # Ensure it's 8 digits
 
     # Get the IBM_PATH from the row
@@ -27,7 +28,7 @@ for index, row in df.iterrows():
     if not os.path.exists(ibm_path):
         print(f"Error: IBM_PATH '{ibm_path}' does not exist.")
         continue  # Skip this iteration if the path is invalid
-
+    macro_chain_value = 1 if index == len(df) - 1 else 0  
     # Format the content by replacing placeholders with values from the DataFrame
     formatted_content = mac_template.format(
         Surname=row.get('Surname', ''),
@@ -36,22 +37,30 @@ for index, row in df.iterrows():
         DOB=row.get('DOB', ''),
         Agent=formatted_agent,  # Add the formatted agent number here
         Partner=formatted_partner,  # Add the formatted agent number here
+        Reff_Partner=formatted_Reff_Partner,  # Add the formatted agent number here
         Mandate=formatted_mandate,  # Add the formatted agent number here
         Referral=row.get('Referral', ''),
         Branch=row.get('Branch', ''),
         Product=row.get('Product', ''),
         Payment_Method=row.get('Payment_Method', ''),
         Billing_Frequency=f"{row.get('Billing_Frequency', ''):02}",  # Ensures two digits
+        Sum_Insured=row.get('Sum_Insured', ''),
+        Deductible=row.get('Deductible', ''),
+        Plan_Type=row.get('Plan_Type', ''),
         Height=row.get('Height', ''),
         Weight=row.get('Weight', ''),
         Insurable_Interest=row.get('Insurable_Interest', ''),
         Cover_Type=row.get('Cover_Type', ''),
         Risk_Cess_Term=row.get('Risk_Cess_Term', ''),
         Prem_Cess_Term=row.get('Prem_Cess_Term', ''),
+        Premi_Term=row.get('Premi_Term', ''),
         Total_Premium=row.get('Total_Premium', ''),
         EPOL=row.get('EPOL', ''),
         ESUB=row.get('ESUB', ''),
         MAILFLAG=row.get('MAILFLAG', ''),
+        Bank_Code=row.get('Bank_Code', ''),
+        Campaign_05D=row.get('Campaign_05D', ''),
+        macro_chain=macro_chain_value,
         IBM_Path=ibm_path,  # Set IBM_Path to the full path of the .mac file
 
         TC_Next=index + 2,
